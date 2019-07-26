@@ -52,18 +52,45 @@ namespace Sitecore.Support.Commerce.CustomModels.PageEvents.Converters
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")]
         protected void TranslateEvent(PageEventData pageEventData, VisitedProductDetailsPageEvent pageEvent)
         {
-
-            pageEvent.ShopName = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.ShopName] as string;
-            pageEvent.ProductId = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.ProductId] as string;
-            pageEvent.ProductName = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.ProductName] as string;
-            pageEvent.ParentCategoryId = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.ParentCategoryId] as string;
-            pageEvent.ParentCategoryName = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.ParentCategoryName] as string;
-            pageEvent.CurrencyCode = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.Currency] as string;
-            pageEvent.Amount = System.Convert.ToDecimal(pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.Amount], CultureInfo.InvariantCulture);
+            #region check has been added
+            if (pageEventData.CustomValues.ContainsKey(Sitecore.Commerce.Constants.KnownPageEventDataNames.ShopName))
+            {
+                pageEvent.ShopName = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.ShopName] as string;
+            }
 
 
+            if (pageEventData.CustomValues.ContainsKey(Sitecore.Commerce.Constants.KnownPageEventDataNames.ProductId))
+            {
+                pageEvent.ProductId = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.ProductId] as string;
+            }
+
+            if (pageEventData.CustomValues.ContainsKey(Sitecore.Commerce.Constants.KnownPageEventDataNames.ProductName))
+            {
+                pageEvent.ProductName = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.ProductName] as string;
+            }
 
 
+            if (pageEventData.CustomValues.ContainsKey(Sitecore.Commerce.Constants.KnownPageEventDataNames.ParentCategoryId))
+            {
+                pageEvent.ParentCategoryId = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.ParentCategoryId] as string;
+            }
+
+
+            if (pageEventData.CustomValues.ContainsKey(Sitecore.Commerce.Constants.KnownPageEventDataNames.ParentCategoryName))
+            {
+                pageEvent.ParentCategoryName = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.ParentCategoryName] as string;
+            }
+
+            if (pageEventData.CustomValues.ContainsKey(Sitecore.Commerce.Constants.KnownPageEventDataNames.Currency))
+            {
+                pageEvent.CurrencyCode = pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.Currency] as string;
+            }
+
+            if (pageEventData.CustomValues.ContainsKey(Sitecore.Commerce.Constants.KnownPageEventDataNames.Amount))
+            {
+                pageEvent.Amount = System.Convert.ToDecimal(pageEventData.CustomValues[Sitecore.Commerce.Constants.KnownPageEventDataNames.Amount], CultureInfo.InvariantCulture);
+            }
+            #endregion
         }
     }
 }
